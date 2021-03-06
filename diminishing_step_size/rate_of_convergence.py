@@ -48,13 +48,13 @@ eta3 = 0.1 * (eta1 / epsilon)**xi3
 xi4 = 0.4
 eta4 = 0.1 * (eta1 / epsilon)**xi4
 
-Num_Exp = 2
+Repeat = 10000
 Exp_Settings = [(eta1, xi1), (eta2, xi2), (eta3, xi3), (eta4, xi4)]
 
 for (eta, xi) in Exp_Settings:
     SE = np.zeros(T)
 
-    for exp in range(Num_Exp):
+    for exp in range(Repeat):
         Q_learner = Linear_Q_learner(Env.state_space, Env.action_space, pi,
                                      Env.gamma, deepcopy(initial_theta),
                                      Phi, SA2Ind)
@@ -68,6 +68,6 @@ for (eta, xi) in Exp_Settings:
 
             SE[idx] += LA.norm(Optimal_Weights - Q_learner.theta)**2
 
-    MSE = SE / Num_Exp
+    MSE = SE / Repeat
     log_MSE = np.log(MSE)
-    np.save('log_MSE_{}exps_xi{}.npy'.format(Num_Exp, xi), log_MSE)
+    np.save('log_MSE_{}exps_xi{}.npy'.format(Repeat, xi), log_MSE)
