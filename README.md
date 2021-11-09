@@ -38,5 +38,5 @@ cd diminishing_step_size
 python rate_of_convergence.py
 ```
 
-# Maintainers
+# Maintainer
 * [Sheng Zhang](https://github.com/xiaojianzhang) - shengzhang@gatech.edu
